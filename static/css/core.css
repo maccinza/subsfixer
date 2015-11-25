@@ -1,0 +1,44 @@
+body {
+    overflow-x: hidden;
+}
+
+#main-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #558ce8;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#main-content {
+    position: relative;
+    top: 20%;
+}
+
+.form-headline {
+    padding-bottom: 30px;
+}
+
+.form-error {
+    padding-top: 8px !important;
+    color: #c52024 !important;
+}
+
+.my-file-custom:after {
+    content: attr(data-content);
+    font-size: 16px;
+}
+
+.smaller {
+    position: relative;
+    max-width: 50% !important;
+    left: 25%;
+}
+
+.top-padding {
+    padding-top: 15px;
+}
+
+.strong {
+    font-weight: bold;
+}

@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% block extrahead %}
+    <script type="text/javascript">
+
+        function checkSelected() {
+            var selected_file = $('#subtitle_file').get(0).value;
+            return selected_file != "";
+        }
+
+        function validateSelected() {
+            var selected_file = $('#subtitle_file').get(0).value;
+            return (checkSelected() && selected_file.indexOf('.srt') != -1);
+        }
+
+        function validateAdjustment() {
+            var adjustment = $('#adjustment').get(0).value;
+            return (adjustment != "" && adjustment != undefined && !isNaN(parseInt(adjustment)));
+        }
+
+        function cleanErrors() {
+            $('#file_error').text("");
+            $('#adjustment_error').text("");
+        }
+
+        function handleSubmission(event) {
+            cleanErrors();
+            var flag_file = false, flag_adjustment = false;
+            if(validateSelected()){
+                flag_file = true;
+            }
+            else {
+                $("#file_error").text("Please, select a valid .srt file before submitting.");
+            }
+
+            if(validateAdjustment()){
+                flag_adjustment = true;
+            }
+            else {
+                $("#adjustment_error").text("Please, inform a valid value in seconds.");
+            }
+
+            if(flag_file && flag_adjustment) {
+                return true;
+            }
+            else {
+                event.preventDefault();
+                return false;
+            }
+        }
+
+        window.onload = function() {
+
+            $('#plus').on('click', function(){
+                var adjustment = $('#adjustment').get(0);
+                if(isNaN(parseInt(adjustment.value))) {
+                    adjustment.value = 1;
+                }
+                else {
+                    adjustment.value ++;
+                }
+            });
+
+            $('#minus').on('click', function(){
+                var adjustment = $('#adjustment').get(0);
+                if(isNaN(parseInt(adjustment.value))) {
+                    adjustment.value = -1;
+
+                }
+                else {
+                    adjustment.value --;
+                }
+            });
+
+            $('#subtitle_file').on('change', function(){
+                cleanErrors();
+                if(!checkSelected()) {
+                    $("#file_placeholder").attr('data-content', "Choose your .srt file...");
+                }
+                else {
+                    $("#file_placeholder").attr('data-content', this.value);
+                }
+            });
+
+            $('#subtitle_form').on('submit', function(event){
+                return handleSubmission(event);
+            });
+        }
+    </script>
+{% endblock %}
+{% block main_slot %}
+    <div class="row">
+        <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3"></div>
+        <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+            <form action="/" method="POST" id="subtitle_form" name="subtitle_form" enctype="multipart/form-data">
+                <fieldset class="form-group">
+                    <label class="label ">
+                        {{ subtitle_form.subtitle_file }}
+                         <span id="file_placeholder"
+                               class="file-custom my-file-custom"
+                               data-content="Choose your .srt file..."></span>
+                    </label>
+                    <p class="form-error text-center" id="file_error"></p>
+                </fieldset>
+                <fieldset class="form-group">
+                    <div class="input-group smaller">
+                        <input type="text" id="adjustment"
+                               class="form-control" name="adjustment" placeholder="Time in seconds">
+                        <span class="input-group-btn">
+                            <button class="btn btn-secondary" type="button" id="minus"> - </button>
+                            <button class="btn btn-secondary" type="button" id="plus"> + </button>
+                        </span>
+                    </div>
+                    <p class="form-error text-center" id="adjustment_error"></p>
+                </fieldset>
+                <div class="row">
+                    <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3"></div>
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6 text-center">
+                        <input id="submit" type="submit" class="btn btn-lg btn-warning strong" value="Fix it!">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
