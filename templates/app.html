@@ -22,7 +22,22 @@
             $('#adjustment_error').text("");
         }
 
-        function handleSubmission(event) {
+
+        function submitForm(form, event) {
+            $.ajax({
+                url: '/',
+                type: 'POST',
+                data: new FormData(f),
+                processData: false,
+                contentType: false,
+                success: function(response_data) {
+                    console.log("OK");
+                }
+            });
+            event.preventDefault();
+        }
+
+        function handleSubmission(form, event) {
             cleanErrors();
             var flag_file = false, flag_adjustment = false;
             if(validateSelected()){
@@ -40,6 +55,7 @@
             }
 
             if(flag_file && flag_adjustment) {
+                //submitForm(form, event);
                 return true;
             }
             else {
@@ -82,7 +98,7 @@
             });
 
             $('#subtitle_form').on('submit', function(event){
-                return handleSubmission(event);
+                return handleSubmission(this, event);
             });
         }
     </script>
