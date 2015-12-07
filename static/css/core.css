@@ -12,7 +12,7 @@ body {
 
 #main-content {
     position: relative;
-    top: 20%;
+    top: 15%;
 }
 
 .form-headline {
@@ -21,7 +21,9 @@ body {
 
 .form-error {
     padding-top: 8px !important;
-    color: #c52024 !important;
+    color: #f3ff24 !important;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-size: 18px;
 }
 
 .my-file-custom:after {
@@ -29,10 +31,8 @@ body {
     font-size: 16px;
 }
 
-.smaller {
-    position: relative;
-    max-width: 50% !important;
-    left: 25%;
+.my-file-custom:before {
+    top: -.065rem !important;
 }
 
 .top-padding {
@@ -41,4 +41,18 @@ body {
 
 .strong {
     font-weight: bold;
+}
+
+.btn-toolbar .btn {
+    margin-bottom: 5px;
+}
+
+.fixer {
+    position: relative;
+    top: 40px;
+}
+
+.app-hint {
+    text-align: center;
+    font-size: 18px;
 }

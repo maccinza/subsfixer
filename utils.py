@@ -13,10 +13,17 @@ def adjust_seconds(seconds):
 
     def replacement(match_obj):
         pattern = match_obj.group(0)
-        time_obj = datetime.strptime(pattern, "%H:%M:%S")
-        added_time = time_obj + timedelta(seconds=seconds)
-        new_str_time = added_time.strftime("%H:%M:%S")
-        return new_str_time
+        try:
+            time_obj = datetime.strptime(pattern, "%H:%M:%S")
+            added_time = time_obj + timedelta(seconds=seconds)
+            new_str_time = added_time.strftime("%H:%M:%S")
+            return new_str_time
+        except ValueError:
+            # TODO: build better solution (eg.:remove the maximum possible value that keeps added time positive)
+            # time got negative, keep the same
+            return pattern
+
+
 
     return replacement
 

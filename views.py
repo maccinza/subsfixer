@@ -8,7 +8,6 @@ from flask.templating import render_template
 from flask import request, make_response
 from forms import SubtitleUploadForm
 from utils import verify_file, fix_file
-from configs import FILE_TTL
 
 __author__ = 'infante'
 
@@ -22,7 +21,7 @@ def handle_subtitles():
         return render_template('app.html', subtitle_form=subtitle_form)
 
     elif request.method == "POST":
-        # TODO: change behavior to store file for some time and return url for downloading the file
+        # TODO: change behavior to store file for some time and return url for downloading the file or use ajax
         subtitle_form = SubtitleUploadForm(request.form)
         error = None
         filename = None
