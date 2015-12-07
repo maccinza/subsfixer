@@ -3,7 +3,7 @@
 from flask import Flask
 
 
-# Configucacao da aplicacao
+# App configuration
 
 app = Flask(__name__)
 app.debug = True
