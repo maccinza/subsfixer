@@ -95,6 +95,6 @@ function insertFormHandleListener(){
 
 function insertRefreshListener() {
     $('#refresh_button').on('click', function() {
-        window.location.reload(true);
+        window.location = "/";
     });
 }

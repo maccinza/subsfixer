@@ -40,7 +40,11 @@
                                    class="file-custom my-file-custom"
                                    data-content="Choose your .srt file..."></span>
                         </label>
-                        <p class="form-error text-center" id="file_error"></p>
+                        <p class="form-error text-center" id="file_error">
+                            {% if subtitle_form.errors.subtitle_file %}
+                                {{ subtitle_form.errors.subtitle_file }}
+                            {% endif %}
+                        </p>
                     </fieldset>
                     <fieldset class="form-group">
                         <div class="input-group">
