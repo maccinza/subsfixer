@@ -2,8 +2,8 @@
 u"""
     This module contains the definitions of forms to be used in the application.
 """
-import re
-from wtforms import Form, validators
+
+from wtforms import Form
 from wtforms.fields import FileField, IntegerField
 
 __author__ = 'infante'

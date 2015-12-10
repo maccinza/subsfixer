@@ -4,7 +4,7 @@ u"""
     client side.
 """
 
-from server import app
+from subsfixer import app
 from flask.templating import render_template
 from flask import request, make_response
 from forms import SubtitleUploadForm
